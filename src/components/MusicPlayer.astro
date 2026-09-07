@@ -1,0 +1,158 @@
+---
+// Import file audio dari src/assets/ agar diolah sebagai media internal Astro
+import darkAudio from "../assets/audio/The_Last_Firefly.mp3";
+import lightAudio from "../assets/audio/Misty_Morning.mp3";
+---
+
+<div class="fixed bottom-14 right-6 z-40 flex flex-col items-end gap-2">
+    <!-- Tooltip Petunjuk -->
+    <div
+        id="music-hint"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-blue-600 text-white text-[11px] font-medium shadow-lg animate-bounce transition-all duration-500 ease-in-out pointer-events-none"
+    >
+        <span>💡 Klik tombol ini atau ganti tema untuk putar musik!</span>
+        <div class="absolute -bottom-1 right-6 w-2 h-2 bg-blue-600 rotate-45">
+        </div>
+    </div>
+
+    <!-- Elemen Audio menggunakan URL Impor Astro -->
+    <audio id="bg-music-dark" loop preload="auto" src={darkAudio}></audio>
+    <audio id="bg-music-light" loop preload="auto" src={lightAudio}></audio>
+
+    <!-- Tombol Control -->
+    <button
+        id="music-toggle"
+        type="button"
+        aria-label="Toggle Backsound Music"
+        class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-lg text-slate-700 dark:text-slate-200 text-xs font-semibold hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+    >
+        <span class="relative flex h-3 w-3 items-center justify-center">
+            <span
+                id="music-ping"
+                class="hidden absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"
+            ></span>
+            <span
+                id="music-dot"
+                class="relative inline-flex h-2 w-2 rounded-full bg-slate-400"
+            ></span>
+        </span>
+
+        <span
+            id="music-text"
+            class="group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+        >
+            Musik: Off
+        </span>
+
+        <svg
+            id="icon-play"
+            class="w-3.5 h-3.5 text-slate-500 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path d="M8 5v14l11-7z"></path>
+        </svg>
+        <svg
+            id="icon-pause"
+            class="w-3.5 h-3.5 text-emerald-500 hidden"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+        </svg>
+    </button>
+</div>
+
+<script is:inline>
+    const setupThemeMusicPlayer = () => {
+        const audioDark = document.getElementById("bg-music-dark");
+        const audioLight = document.getElementById("bg-music-light");
+        const btn = document.getElementById("music-toggle");
+        const hint = document.getElementById("music-hint");
+        const iconPlay = document.getElementById("icon-play");
+        const iconPause = document.getElementById("icon-pause");
+        const text = document.getElementById("music-text");
+        const dot = document.getElementById("music-dot");
+        const ping = document.getElementById("music-ping");
+
+        if (!audioDark || !audioLight || !btn) return;
+
+        audioDark.volume = 0.35;
+        audioLight.volume = 0.35;
+
+        let isMusicEnabled = false;
+
+        const dismissHint = () => {
+            if (hint) {
+                hint.classList.add("opacity-0", "translate-y-2");
+                setTimeout(() => hint.remove(), 500);
+            }
+        };
+
+        const getActiveAudio = () => {
+            const isDark = document.documentElement.classList.contains("dark");
+            return {
+                current: isDark ? audioDark : audioLight,
+                other: isDark ? audioLight : audioDark,
+                label: isDark ? "Dark" : "Light",
+            };
+        };
+
+        const updateUI = () => {
+            const { label } = getActiveAudio();
+
+            if (isMusicEnabled) {
+                iconPlay?.classList.add("hidden");
+                iconPause?.classList.remove("hidden");
+                ping?.classList.remove("hidden");
+                dot?.classList.remove("bg-slate-400");
+                dot?.classList.add("bg-emerald-500");
+                if (text) text.textContent = `Musik (${label}): On`;
+            } else {
+                iconPlay?.classList.remove("hidden");
+                iconPause?.classList.add("hidden");
+                ping?.classList.add("hidden");
+                dot?.classList.remove("bg-emerald-500");
+                dot?.classList.add("bg-slate-400");
+                if (text) text.textContent = "Musik: Off";
+            }
+        };
+
+        const syncAudioPlayback = () => {
+            const { current, other } = getActiveAudio();
+
+            other.pause();
+
+            if (isMusicEnabled) {
+                current
+                    .play()
+                    .then(() => {
+                        updateUI();
+                    })
+                    .catch((err) => {
+                        console.log("Autoplay ditahan browser:", err);
+                        isMusicEnabled = false;
+                        updateUI();
+                    });
+            } else {
+                current.pause();
+                updateUI();
+            }
+        };
+
+        window.addEventListener("theme-toggle-clicked", () => {
+            dismissHint();
+            isMusicEnabled = true;
+            syncAudioPlayback();
+        });
+
+        btn.addEventListener("click", () => {
+            dismissHint();
+            isMusicEnabled = !isMusicEnabled;
+            syncAudioPlayback();
+        });
+    };
+
+    setupThemeMusicPlayer();
+    document.addEventListener("astro:after-swap", setupThemeMusicPlayer);
+</script>

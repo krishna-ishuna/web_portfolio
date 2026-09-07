@@ -1,0 +1,294 @@
+---
+import "../styles/global.css";
+import { Portfolio } from "../models/Portfolio";
+
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Skills from "../components/Skills.astro";
+import Documentation from "../components/Documentation.astro";
+import Footer from "../components/Footer.astro";
+import MusicPlayer from "../components/MusicPlayer.astro";
+
+const userPortfolio = new Portfolio(
+	"Krishna",
+	"Software Engineer",
+	"Saya seorang developer yang berfokus pada pembuatan pengalaman digital yang bersih, responsif, dan intuitif. Suka mempelajari teknologi baru dan mengubah ide menjadi produk yang berdampak.",
+	[
+		"Visual Studio",
+		"VS Code",
+		"Android Studio",
+		"Antigravity IDE",
+		"Figma",
+		"Git & GitHub",
+		"MS Office",
+		"Docker",
+	],
+	[
+		"Full-Stack Web Development",
+		"Mobile App Development",
+		"Data Management",
+		"Project Manager",
+		"System Analyst",
+		"Quality Assurance",
+	],
+	[
+		{
+			judul: "Pemenang Hackathon 2025",
+			deskripsi:
+				"Mengembangkan aplikasi solusi sampah lingkungan dalam 24 jam bersama tim.",
+			gambar: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+			kategori: "Kompetisi",
+		},
+		{
+			judul: "Pembicara Workshop Tech",
+			deskripsi:
+				"Berbagi pengalaman mengenai pengenalan Web Development dasar untuk pemula.",
+			gambar: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80",
+			kategori: "Kegiatan",
+		},
+		{
+			judul: "Kolaborasi Proyek Tim",
+			deskripsi:
+				"Proses merancang arsitektur antarmuka aplikasi manajemen tugas.",
+			gambar: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+			kategori: "Kolaborasi",
+		},
+	],
+);
+---
+
+<html lang="id" class="scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Portofolio | {userPortfolio.nama}</title>
+		<script is:inline>
+			if (
+				localStorage.getItem("color-theme") === "dark" ||
+				(!("color-theme" in localStorage) &&
+					window.matchMedia("(prefers-color-scheme: dark)").matches)
+			) {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
+		</script>
+	</head>
+	<body
+		class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased transition-colors duration-300 selection:bg-blue-600 selection:text-white"
+	>
+		<!-- Dynamic Background (Langit Soft & Adem di Light Mode / Luar Angkasa di Dark Mode) -->
+		<div
+			class="fixed inset-0 -z-20 pointer-events-none overflow-hidden bg-gradient-to-b from-slate-200 via-sky-100/70 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500"
+		>
+			<!-- ================= LIGHT MODE: Awan Latar Jelas, Mendekati Tengah & Infinite Loop ================= -->
+			<div class="dark:hidden absolute inset-0">
+				<!-- Awan 1 (Bagian Atas-Tengah) -->
+				<div
+					class="absolute top-[10%] left-0 w-80 h-24 bg-white/95 rounded-full blur-[2px] shadow-sm animate-cloud-loop-1"
+				>
+					<div
+						class="absolute -top-6 left-10 w-16 h-16 bg-white/95 rounded-full blur-[2px]"
+					>
+					</div>
+					<div
+						class="absolute -top-8 left-20 w-20 h-20 bg-white/95 rounded-full blur-[2px]"
+					>
+					</div>
+				</div>
+
+				<!-- Awan 2 (Bagian Tengah Halaman) -->
+				<div
+					class="absolute top-[38%] left-0 w-96 h-28 bg-white/90 rounded-full blur-[2px] shadow-sm animate-cloud-loop-2"
+				>
+					<div
+						class="absolute -top-8 right-12 w-20 h-20 bg-white/90 rounded-full blur-[2px]"
+					>
+					</div>
+					<div
+						class="absolute -top-10 right-28 w-24 h-24 bg-white/90 rounded-full blur-[2px]"
+					>
+					</div>
+				</div>
+
+				<!-- Awan 3 (Bagian Bawah-Tengah) -->
+				<div
+					class="absolute top-[65%] left-0 w-88 h-24 bg-white/85 rounded-full blur-[2px] shadow-sm animate-cloud-loop-3"
+				>
+					<div
+						class="absolute -top-7 left-16 w-18 h-18 bg-white/85 rounded-full blur-[2px]"
+					>
+					</div>
+				</div>
+
+				<!-- Pattern Grid Halus -->
+				<div
+					class="absolute inset-0 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:32px_32px] opacity-25"
+				>
+				</div>
+			</div>
+
+			<!-- ================= DARK MODE: Tema Luar Angkasa ================= -->
+			<div class="hidden dark:block absolute inset-0">
+				<div
+					class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px] opacity-40 animate-space-slide"
+				>
+				</div>
+				<div
+					class="absolute inset-0 bg-[radial-gradient(#38bdf8_1.5px,transparent_1.5px)] [background-size:64px_64px] opacity-30 animate-twinkle-slow"
+				>
+				</div>
+				<div
+					class="absolute inset-0 bg-[radial-gradient(#818cf8_2px,transparent_2px)] [background-size:96px_96px] opacity-20 animate-twinkle-fast"
+				>
+				</div>
+				<div
+					class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_20%,rgba(2,6,23,0.85)_100%)]"
+				>
+				</div>
+			</div>
+
+			<!-- ================= CURSOR FOLLOWERS ================= -->
+
+			<!-- 1. AWAN CURSOR (Light Mode) -->
+			<div
+				id="cursor-cloud"
+				class="dark:hidden fixed top-0 left-0 w-20 h-12 pointer-events-none transition-transform duration-100 ease-out z-50 -translate-x-1/2 -translate-y-1/2 opacity-0"
+			>
+				<div
+					class="absolute inset-0 bg-white/90 rounded-full blur-[2px] shadow-sm"
+				>
+				</div>
+				<div
+					class="absolute -top-3 left-3 w-8 h-8 bg-white/90 rounded-full blur-[2px]"
+				>
+				</div>
+				<div
+					class="absolute -top-1 right-3 w-7 h-7 bg-white/90 rounded-full blur-[2px]"
+				>
+				</div>
+				<div
+					class="absolute -inset-2 bg-sky-200/30 rounded-full blur-md -z-10"
+				>
+				</div>
+			</div>
+
+			<!-- 2. BINTANG CURSOR (Dark Mode) -->
+			<div
+				id="cursor-star"
+				class="hidden dark:block fixed top-0 left-0 w-12 h-12 pointer-events-none transition-transform duration-75 ease-out z-50 -translate-x-1/2 -translate-y-1/2 opacity-0"
+			>
+				<div class="absolute inset-2 bg-white/90 rounded-full blur-xs">
+				</div>
+				<div
+					class="absolute inset-0 bg-cyan-300/70 rounded-full blur-sm"
+				>
+				</div>
+				<div
+					class="absolute -inset-3 bg-cyan-400/40 rounded-full blur-md animate-pulse"
+				>
+				</div>
+				<div
+					class="absolute -inset-6 bg-blue-600/20 rounded-full blur-xl"
+				>
+				</div>
+			</div>
+		</div>
+
+		<!-- Script Pelacak Kursor Dual Mode -->
+		<script is:inline>
+			const setupCursorFollower = () => {
+				const star = document.getElementById("cursor-star");
+				const cloud = document.getElementById("cursor-cloud");
+
+				window.addEventListener(
+					"mousemove",
+					(e) => {
+						const x = e.clientX;
+						const y = e.clientY;
+
+						if (star) {
+							star.classList.remove("opacity-0");
+							star.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+						}
+
+						if (cloud) {
+							cloud.classList.remove("opacity-0");
+							cloud.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+						}
+					},
+					{ passive: true },
+				);
+
+				document.addEventListener("mouseleave", () => {
+					star?.classList.add("opacity-0");
+					cloud?.classList.add("opacity-0");
+				});
+			};
+
+			setupCursorFollower();
+			document.addEventListener("astro:after-swap", setupCursorFollower);
+		</script>
+
+		<Navbar nama={userPortfolio.nama} />
+
+		<main class="max-w-5xl mx-auto px-6 py-12 pb-20 space-y-24">
+			<div class="reveal-on-scroll">
+				<Hero
+					nama={userPortfolio.nama}
+					peran={userPortfolio.peran}
+					tentang={userPortfolio.tentang}
+				/>
+			</div>
+
+			<div class="reveal-on-scroll">
+				<Skills
+					skills={userPortfolio.skills}
+					tools={userPortfolio.tools}
+				/>
+			</div>
+
+			<div class="reveal-on-scroll">
+				<Documentation
+					items={userPortfolio.documentation}
+					totalProjects={userPortfolio.getTotalProjects()}
+				/>
+			</div>
+		</main>
+
+		<Footer nama={userPortfolio.nama} />
+
+		<!-- Script Animasi Interaktif Scroll -->
+		<script>
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add(
+								"opacity-100",
+								"translate-y-0",
+							);
+							entry.target.classList.remove(
+								"opacity-0",
+								"translate-y-8",
+							);
+						}
+					});
+				},
+				{ threshold: 0.1 },
+			);
+
+			document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+				el.classList.add(
+					"opacity-0",
+					"translate-y-8",
+					"transition-all",
+					"duration-700",
+					"ease-out",
+				);
+				observer.observe(el);
+			});
+		</script>
+		<MusicPlayer />
+	</body>
+</html>

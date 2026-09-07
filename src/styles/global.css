@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Animasi Bintang Kedip & Bergerak (Dark Mode) */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes spaceMove {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-1000px); }
+}
+
+/* Animasi Awan Mengapung (Light Mode) */
+@keyframes cloudLoop {
+  0% {
+    transform: translateX(-300px);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+.animate-cloud-loop-1 {
+  animation: cloudLoop 25s linear infinite;
+}
+
+.animate-cloud-loop-2 {
+  animation: cloudLoop 35s linear infinite;
+  animation-delay: -12s; /* Supaya posisi awan langsung tersebar sejak awal halaman dimuat */
+}
+
+.animate-cloud-loop-3 {
+  animation: cloudLoop 45s linear infinite;
+  animation-delay: -25s;
+}
+
+.animate-twinkle-fast { animation: twinkle 2s infinite ease-in-out; }
+.animate-twinkle-slow { animation: twinkle 4s infinite ease-in-out; }
+.animate-space-slide { animation: spaceMove 60s linear infinite; }

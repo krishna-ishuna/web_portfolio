@@ -1,0 +1,65 @@
+---
+interface Props {
+    skills: string[];
+    tools: string[];
+}
+
+const { skills, tools } = Astro.props;
+---
+
+<section id="keahlian" class="space-y-8">
+    <div class="border-l-4 border-blue-600 dark:border-blue-500 pl-4">
+        <h2
+            class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white"
+        >
+            Kemampuan & Perangkat
+        </h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            Teknologi dan alat yang biasa saya gunakan untuk berkarya.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div
+            class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+        >
+            <h3
+                class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-blue-400"
+                ></span> Skill Kemampuan
+            </h3>
+            <div class="flex flex-wrap gap-2">
+                {
+                    skills.map((skill) => (
+                        <span class="bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 text-xs font-medium px-3.5 py-2 rounded-xl border border-slate-200/60 dark:border-slate-700/60 transition-colors">
+                            {skill}
+                        </span>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div
+            class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+        >
+            <h3
+                class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="w-2.5 h-2.5 rounded-full bg-indigo-600 dark:bg-indigo-400"
+                ></span> Tools & Software
+            </h3>
+            <div class="flex flex-wrap gap-2">
+                {
+                    tools.map((tool) => (
+                        <span class="bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-900/50 text-xs font-semibold px-3.5 py-2 rounded-xl transition-colors">
+                            {tool}
+                        </span>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

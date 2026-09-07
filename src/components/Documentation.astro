@@ -1,0 +1,147 @@
+---
+import type { IDocumentation } from "../models/Portfolio";
+
+interface Props {
+    items: IDocumentation[];
+    totalProjects: number;
+}
+
+const { items, totalProjects } = Astro.props;
+
+// Mengambil daftar kategori unik secara dinamis
+const categories = ["Semua", ...new Set(items.map((item) => item.kategori))];
+---
+
+<section id="documentation" class="space-y-8">
+    <div
+        class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-l-4 border-blue-600 dark:border-blue-500 pl-4"
+    >
+        <div>
+            <h2
+                class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white"
+            >
+                Dokumentasi (<span id="project-count">{totalProjects}</span>)
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+                Beberapa momen penting dan kegiatan yang pernah saya ikuti.
+            </p>
+        </div>
+
+        <!-- Tombol Filter -->
+        <div class="flex flex-wrap gap-2" id="filter-buttons">
+            {
+                categories.map((cat, index) => (
+                    <button
+                        data-filter={cat}
+                        class={`filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                            index === 0
+                                ? "bg-blue-600 text-white shadow-sm"
+                                : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 dark:hover:text-white"
+                        }`}
+                    >
+                        {cat}
+                    </button>
+                ))
+            }
+        </div>
+    </div>
+
+    <!-- Grid Kartu Dokumentasi -->
+    <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        id="doc-grid"
+    >
+        {
+            items.map((item) => (
+                <div
+                    data-category={item.kategori}
+                    class="doc-card group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl dark:hover:shadow-blue-950/20 hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                >
+                    <div class="relative overflow-hidden h-48 bg-slate-100 dark:bg-slate-800">
+                        <img
+                            src={item.gambar}
+                            alt={item.judul}
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                        />
+                        <span class="absolute top-3 right-3 bg-slate-900/70 backdrop-blur-md text-white text-[10px] font-medium px-2.5 py-1 rounded-full border border-white/10">
+                            {item.kategori}
+                        </span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                {item.judul}
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+                                {item.deskripsi}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<!-- Script Filter Tanpa Reload -->
+<script is:inline>
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const docCards = document.querySelectorAll(".doc-card");
+    const projectCount = document.getElementById("project-count");
+
+    filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const selectedFilter = btn.getAttribute("data-filter");
+
+            // Reset semua tombol ke kondisi inaktif (hover hijau)
+            filterButtons.forEach((b) => {
+                b.classList.remove("bg-blue-600", "text-white", "shadow-sm");
+                b.classList.add(
+                    "bg-slate-100",
+                    "dark:bg-slate-800",
+                    "text-slate-600",
+                    "dark:text-slate-300",
+                    "hover:bg-emerald-600",
+                    "hover:text-white",
+                    "dark:hover:bg-emerald-600",
+                    "dark:hover:text-white",
+                );
+            });
+
+            // Terapkan kondisi aktif (warna biru) pada tombol yang diklik
+            btn.classList.add("bg-blue-600", "text-white", "shadow-sm");
+            btn.classList.remove(
+                "bg-slate-100",
+                "dark:bg-slate-800",
+                "text-slate-600",
+                "dark:text-slate-300",
+                "hover:bg-emerald-600",
+                "hover:text-white",
+                "dark:hover:bg-emerald-600",
+                "dark:hover:text-white",
+            );
+
+            let visibleCount = 0;
+
+            // Filter kartu secara langsung
+            docCards.forEach((card) => {
+                const cardCategory = card.getAttribute("data-category");
+
+                if (
+                    selectedFilter === "Semua" ||
+                    cardCategory === selectedFilter
+                ) {
+                    card.classList.remove("hidden");
+                    visibleCount++;
+                } else {
+                    card.classList.add("hidden");
+                }
+            });
+
+            // Update jumlah angka dokumentasi secara dinamis
+            if (projectCount) {
+                projectCount.textContent = visibleCount.toString();
+            }
+        });
+    });
+</script>
