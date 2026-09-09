@@ -12,12 +12,14 @@ const { nama } = Astro.props;
     <div
         class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center relative z-20"
     >
-        <!-- Logo / Nama -->
-        <a
-            href="#"
-            class="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400"
-            >{nama}</a
-        >
+        <!-- Logo / Gambar -->
+        <a href="#" class="flex items-center">
+            <img
+                src="/logo.png"
+                alt={nama}
+                class="w-9 h-9 rounded-full object-cover border border-slate-200 dark:border-slate-700 shadow-sm"
+            />
+        </a>
 
         <!-- Desktop Navigation -->
         <nav
@@ -73,7 +75,7 @@ const { nama } = Astro.props;
 
             <!-- Tombol Kontak (Desktop) -->
             <a
-                href="mailto:email@domain.com"
+                href="mailto:krishnaradityaariela@gmail.com"
                 class="hidden sm:inline-flex bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-full font-medium transition"
             >
                 Kontak
@@ -138,7 +140,7 @@ const { nama } = Astro.props;
                 >Dokumentasi</a
             >
             <a
-                href="mailto:email@domain.com"
+                href="mailto:krishnaradityaariela@gmail.com"
                 class="block sm:hidden text-center bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-xl font-medium transition mt-2"
             >
                 Kontak
