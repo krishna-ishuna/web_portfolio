@@ -1,0 +1,58 @@
+---
+interface EducationItem {
+    universitas: string;
+    logo: string;
+    prodi: string;
+    tanggalLulus: string;
+}
+
+const educationData: EducationItem[] = [
+    {
+        universitas: "Universitas Muhammadiyah Purwokerto",
+        logo: "/logo-kampus.png",
+        prodi: "S1 Teknik Informatika",
+        tanggalLulus: "31 Juli 2026",
+    },
+];
+---
+
+<section id="pendidikan" class="space-y-8">
+    <div class="border-l-4 border-blue-600 dark:border-blue-500 pl-4">
+        <h2
+            class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white"
+        >
+            Pendidikan
+        </h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            Latar belakang pendidikan formal perguruan tinggi.
+        </p>
+    </div>
+
+    <div class="space-y-4">
+        {
+            educationData.map((edu) => (
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-4">
+                    <img
+                        src={edu.logo}
+                        alt={edu.universitas}
+                        class="w-16 h-16 object-contain rounded-xl p-1 bg-slate-50 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700/60 shrink-0"
+                    />
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-lg">
+                            {edu.universitas}
+                        </h3>
+                        <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm">
+                            {edu.prodi}
+                        </p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                            Lulus:{" "}
+                            <span class="font-medium text-slate-700 dark:text-slate-300">
+                                {edu.tanggalLulus}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>

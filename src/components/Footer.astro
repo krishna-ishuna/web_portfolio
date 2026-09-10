@@ -6,50 +6,83 @@ interface Props {
 const { nama } = Astro.props;
 ---
 
-<!-- Floating Sticky Footer -->
+<!-- Floating Sticky Footer Modern -->
 <footer
-    class="fixed bottom-0 left-0 w-full z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200/80 dark:border-slate-800 py-3 transition-colors duration-300"
+    class="fixed bottom-0 left-0 w-full z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200/80 dark:border-slate-800/80 py-3 transition-colors duration-300 shadow-lg shadow-slate-900/5"
 >
     <div
         class="max-w-5xl mx-auto px-6 flex items-center justify-between text-xs font-medium text-slate-600 dark:text-slate-400"
     >
-        <!-- Hak Cipta Singkat -->
-        <p class="truncate pr-2">
-            © {new Date().getFullYear()}
-            <span class="text-slate-900 dark:text-white font-semibold"
-                >{nama}</span
+        <!-- Hak Cipta & Status Aktivitas -->
+        <div class="flex items-center gap-3 truncate pr-2">
+            <p class="truncate">
+                © {new Date().getFullYear()}
+                <span
+                    class="text-slate-900 dark:text-white font-bold tracking-tight"
+                    >{nama}</span
+                >
+            </p>
+            <span
+                class="hidden sm:inline-block w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700"
+            ></span>
+            <span
+                class="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400"
             >
-        </p>
+                <span
+                    class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"
+                ></span>
+                Terbuka untuk peluang kerjasama
+            </span>
+        </div>
 
-        <!-- Tautan Sosial & Tombol Ke Atas -->
-        <div class="flex items-center gap-3 shrink-0">
+        <!-- Tautan Sosial Berikon & Tombol Kembali ke Atas -->
+        <div class="flex items-center gap-2 shrink-0">
+            <!-- GitHub -->
             <a
                 href="https://github.com/krishna-ishuna"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                aria-label="GitHub"
+                class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
             >
-                GitHub
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    ></path>
+                </svg>
+                <span class="hidden md:inline">GitHub</span>
             </a>
-            <span class="text-slate-300 dark:text-slate-700">•</span>
+
+            <!-- LinkedIn -->
             <a
                 href="https://www.linkedin.com/in/krishna-raditya-ariela-31a420421?utm_source=share_via&utm_content=profile&utm_medium=member_android"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                aria-label="LinkedIn"
+                class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
             >
-                LinkedIn
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"
+                    ></path>
+                </svg>
+                <span class="hidden md:inline">LinkedIn</span>
             </a>
 
-            <!-- Tombol Ke Atas Ringkas -->
+            <span class="w-px h-4 bg-slate-200 dark:bg-slate-800 mx-1"></span>
+
+            <!-- Tombol Ke Atas Interaktif -->
             <button
                 id="back-to-top"
                 type="button"
                 aria-label="Kembali ke atas"
-                class="ml-2 p-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg transition-all active:scale-95 cursor-pointer"
+                title="Kembali ke atas"
+                class="p-2 bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 dark:hover:bg-blue-600 text-slate-600 dark:text-slate-300 hover:text-white dark:hover:text-white rounded-xl transition-all duration-200 active:scale-90 cursor-pointer border border-slate-200/60 dark:border-slate-700/60 shadow-xs"
             >
                 <svg
-                    class="w-3.5 h-3.5"
+                    class="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-y-0.5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -57,7 +90,7 @@ const { nama } = Astro.props;
                     <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                        stroke-width="2"
+                        stroke-width="2.5"
                         d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
                 </svg>
             </button>
@@ -65,7 +98,7 @@ const { nama } = Astro.props;
     </div>
 </footer>
 
-<!-- Spacer Tambahan di Main Page agar Konten Terbawah Tidak Tertutup Footer -->
+<!-- Script Pengatur Scroll Ke Atas -->
 <script is:inline>
     const setupFooter = () => {
         const backToTopBtn = document.getElementById("back-to-top");

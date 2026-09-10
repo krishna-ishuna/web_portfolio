@@ -1,0 +1,76 @@
+---
+interface CertificateItem {
+    judul: string;
+    penerbit: string;
+    tanggal: string;
+    nomor: string;
+    fileGambar: string;
+}
+
+const certificates: CertificateItem[] = [
+    {
+        judul: "Sertifikasi Kompetensi Programmer",
+        penerbit: "BNSP",
+        tanggal: "29 April 2026",
+        nomor: "J 1324 000049 2026",
+        fileGambar: "/sertif.png",
+    },
+];
+---
+
+<section id="sertifikat" class="space-y-8">
+    <div class="border-l-4 border-blue-600 dark:border-blue-500 pl-4">
+        <h2
+            class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white"
+        >
+            Sertifikasi Profesional
+        </h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            Lisensi dan sertifikasi keahlian yang telah saya peroleh.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+            certificates.map((cert) => (
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
+                    <!-- Foto Sertifikat Lanskap Penuh -->
+                    <div class="relative w-full aspect-[4/3] bg-slate-100 dark:bg-slate-800 overflow-hidden border-b border-slate-200/60 dark:border-slate-800">
+                        <img
+                            src={cert.fileGambar}
+                            alt={cert.judul}
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+
+                    <!-- Informasi Sertifikat -->
+                    <div class="p-5 space-y-2 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base leading-snug">
+                                {cert.judul}
+                            </h3>
+                            <p class="text-blue-600 dark:text-blue-400 font-semibold text-xs mt-1">
+                                {cert.penerbit}
+                            </p>
+                        </div>
+
+                        <div class="text-slate-500 dark:text-slate-400 text-xs space-y-0.5 pt-2 border-t border-slate-100 dark:border-slate-800/80 mt-2">
+                            <p>
+                                Diterbitkan:{" "}
+                                <span class="text-slate-700 dark:text-slate-300 font-medium">
+                                    {cert.tanggal}
+                                </span>
+                            </p>
+                            <p>
+                                No. Reg:{" "}
+                                <span class="font-mono text-slate-700 dark:text-slate-300">
+                                    {cert.nomor}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>

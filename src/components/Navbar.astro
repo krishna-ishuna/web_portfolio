@@ -21,7 +21,7 @@ const { nama } = Astro.props;
             />
         </a>
 
-        <!-- Desktop Navigation -->
+        <!-- Navigasi Desktop -->
         <nav
             class="hidden md:flex space-x-8 text-sm font-medium text-slate-600 dark:text-slate-300"
         >
@@ -31,9 +31,19 @@ const { nama } = Astro.props;
                 >Tentang</a
             >
             <a
+                href="#pendidikan"
+                class="hover:text-blue-600 dark:hover:text-blue-400 transition"
+                >Pendidikan</a
+            >
+            <a
                 href="#keahlian"
                 class="hover:text-blue-600 dark:hover:text-blue-400 transition"
                 >Keahlian</a
+            >
+            <a
+                href="#sertifikat"
+                class="hover:text-blue-600 dark:hover:text-blue-400 transition"
+                >Sertifikat</a
             >
             <a
                 href="#documentation"
@@ -123,6 +133,7 @@ const { nama } = Astro.props;
         id="mobile-menu"
         class="md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 -translate-y-2 border-b-0 border-slate-200 dark:border-slate-800 z-10"
     >
+        <!-- Navigasi Mobile -->
         <div class="px-6 py-4 space-y-3">
             <a
                 href="#tentang"
@@ -130,21 +141,25 @@ const { nama } = Astro.props;
                 >Tentang</a
             >
             <a
+                href="#pendidikan"
+                class="mobile-nav-link block text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 py-1 transition"
+                >Pendidikan</a
+            >
+            <a
                 href="#keahlian"
                 class="mobile-nav-link block text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 py-1 transition"
                 >Keahlian</a
+            >
+            <a
+                href="#sertifikat"
+                class="mobile-nav-link block text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 py-1 transition"
+                >Sertifikat</a
             >
             <a
                 href="#documentation"
                 class="mobile-nav-link block text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 py-1 transition"
                 >Dokumentasi</a
             >
-            <a
-                href="mailto:krishnaradityaariela@gmail.com"
-                class="block sm:hidden text-center bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-xl font-medium transition mt-2"
-            >
-                Kontak
-            </a>
         </div>
     </div>
 </header>

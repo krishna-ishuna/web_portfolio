@@ -4,15 +4,17 @@ import { Portfolio } from "../models/Portfolio";
 
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
+import Education from "../components/Education.astro";
 import Skills from "../components/Skills.astro";
+import Certificates from "../components/Certificates.astro";
 import Documentation from "../components/Documentation.astro";
 import Footer from "../components/Footer.astro";
 import MusicPlayer from "../components/MusicPlayer.astro";
 
 const userPortfolio = new Portfolio(
 	"Krishna",
-	"Software Engineer",
-	"Saya seorang developer yang berfokus pada pembuatan pengalaman digital yang bersih, responsif, dan intuitif. Suka mempelajari teknologi baru dan mengubah ide menjadi produk yang berdampak.",
+	"Software Engineer & Project Manager",
+	"Praktisi teknologi dan manajemen yang berfokus pada efisiensi kerja, pengelolaan data, serta koordinasi proyek. Terbiasa mengubah kebutuhan operasional menjadi solusi digital yang rapi dan berdampak",
 	[
 		"Visual Studio",
 		"VS Code",
@@ -27,7 +29,7 @@ const userPortfolio = new Portfolio(
 		"Full-Stack Web Development",
 		"Mobile App Development",
 		"Data Management",
-		"Project Manager",
+		"Project Management",
 		"System Analyst",
 		"Quality Assurance",
 	],
@@ -72,6 +74,20 @@ const userPortfolio = new Portfolio(
 			deskripsi:
 				"Ikut serta dalam pengembangan aplikasi pencatatan data donasi panti asuhan berbasis android serta pelatihan kepada calon pengguna (user).",
 			gambar: "/documentation/gambar-6.jpeg",
+			kategori: "Kegiatan",
+		},
+		{
+			judul: "Pendataan dan Pembuatan Peta Digital Sebaran RTLH di Desa Kalisabuk",
+			deskripsi:
+				"Melakukan pendataan secara langsung serta membuat peta digital sebaran RTLH (Rumah Tidak Layak Huni) di Desa Kalisabuk dalam rangka pelaksanaan program kerja KKN UMP 2025",
+			gambar: "/documentation/gambar-7.jpeg",
+			kategori: "Kegiatan",
+		},
+		{
+			judul: "Membantu Proses Manajemen Data dan Dokumen Perkantoran Balai Desa Kalisabuk",
+			deskripsi:
+				"Ikut serta dalam proses manajemen data dan dokumen perkantoran Balai Desa Kalisabuk dalam rangka pelaksanaan program kerja KKN UMP 2025",
+			gambar: "/documentation/gambar-8.jpeg",
 			kategori: "Kegiatan",
 		},
 	],
@@ -262,11 +278,21 @@ const userPortfolio = new Portfolio(
 				/>
 			</div>
 
+			<!-- Section Pendidikan Baru -->
+			<div class="reveal-on-scroll">
+				<Education />
+			</div>
+
 			<div class="reveal-on-scroll">
 				<Skills
 					skills={userPortfolio.skills}
 					tools={userPortfolio.tools}
 				/>
+			</div>
+
+			<!-- Section Sertifikat Baru -->
+			<div class="reveal-on-scroll">
+				<Certificates />
 			</div>
 
 			<div class="reveal-on-scroll">
